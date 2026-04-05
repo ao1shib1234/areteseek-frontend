@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "products": "Products",
+    "meterReadingService": "Meter Reading Service",
+    "company": "Company",
+    "news": "News",
+    "contacts": "Contacts",
+    "commercialInfo": "Commercial Info",
+    "technicalSupport": "Technical Support",
+    "downloads": "Downloads",
+    "softwareActivation": "Software Activation"
+  },
+  "products": {
+    "categories": {
+      "waterMetering": "Water Metering",
+      "thermalEnergyMetering": "Thermal Energy Metering",
+      "remoteReadingSystems": "Remote Reading Systems"
+    },
+    "waterMetering": {
+      "smart": "SMART Meters",
+      "residential": "Residential",
+      "bulk": "Bulk",
+      "accessories": "Accessories"
+    },
+    "thermalEnergyMetering": {
+      "mechanical": "Mechanical",
+      "ultrasonic": "Ultrasonic",
+      "heatAllocators": "Heat allocators",
+      "accessories": "Accessories"
+    },
+    "remoteReadingSystems": {
+      "lorawan": "LoRaWan",
+      "mBusWireless": "M-BUS Wireless",
+      "mBus": "M-BUS",
+      "pulseOutput": "Pulse Output"
+    },
+    "allProducts": "All products"
+  },
+  "company": {
+    "title": "Company",
+    "years": "30 years",
+    "metersPerYear": "2.2 millions meters per year",
+    "countries": "90 Countries",
+    "facilityArea": "12,000 m²"
+  },
+  "footer": {
+    "tagline": "Leading manufacturer of water and energy metering solutions with 30 years of expertise.",
+    "quickLinks": "Quick Links",
+    "links": {
+      "company": "Company",
+      "products": "Products",
+      "downloads": "Downloads",
+      "news": "News",
+      "faq": "FAQ",
+      "contacts": "Contacts"
+    },
+    "legal": {
+      "privacyPolicy": "Privacy Policy",
+      "cookieSettings": "Cookie Settings",
+      "whistleblowing": "Whistleblowing"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube"
+    },
+    "headquarters": "Headquarters",
+    "address": "Via Brigata Re, 33050 Gonars (UD), Italy",
+    "copyright": "© {year} B METERS. All rights reserved."
+  },
+  "cta": {
+    "learnMore": "Learn more",
+    "contactUs": "Contact us",
+    "viewAll": "View all",
+    "download": "Download"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Since 1993",
+      "title": "Precision in Measurement",
+      "subtitle": "Leading manufacturer of water and energy metering solutions trusted in over 90 countries worldwide.",
+      "imagePlaceholder": "Product image",
+      "statYearsLabel": "of expertise",
+      "statMetersLabel": "produced annually",
+      "statCountriesLabel": "served worldwide"
+    },
+    "products": {
+      "title": "Our Product Range",
+      "subtitle": "Comprehensive metering solutions designed for accuracy, reliability, and seamless integration.",
+      "waterDesc": "High-precision water meters for residential and commercial use, from SMART meters to bulk flow solutions.",
+      "thermalDesc": "Reliable thermal energy meters — mechanical and ultrasonic — for heating and cooling applications.",
+      "remoteDesc": "LoRaWAN, M-Bus, and wireless remote reading systems for efficient, real-time data collection."
+    },
+    "news": {
+      "title": "Latest News",
+      "subtitle": "Stay up to date with product launches, events, and company updates.",
+      "readMore": "Read more",
+      "categoryProduct": "Product",
+      "categoryEvent": "Event",
+      "categoryTech": "Technology",
+      "categoryCompany": "Company",
+      "item1Title": "B METERS Launches New SMART Water Meter Range",
+      "item1Summary": "Our next-generation SMART meters combine ultrasonic precision with integrated IoT connectivity for smarter water management.",
+      "item2Title": "B METERS at Aquatech Amsterdam 2024",
+      "item2Summary": "Visit us at Hall 1, Stand B42 to discover our full range of metering solutions and live product demonstrations.",
+      "item3Title": "LoRaWAN Integration Update for Remote Reading Systems",
+      "item3Summary": "The latest firmware update brings enhanced LoRaWAN Class C support, reducing data latency for large-scale deployments.",
+      "item4Title": "B METERS Publishes 2024 Sustainability Report",
+      "item4Summary": "Our annual sustainability report highlights our commitment to reducing environmental impact across manufacturing and logistics."
+    }
+  }
+}

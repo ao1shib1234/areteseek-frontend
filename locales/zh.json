@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "products": "产品",
+    "meterReadingService": "抄表服务",
+    "company": "公司",
+    "news": "新闻",
+    "contacts": "联系我们",
+    "commercialInfo": "商业信息",
+    "technicalSupport": "技术支持",
+    "downloads": "下载",
+    "softwareActivation": "软件激活"
+  },
+  "products": {
+    "categories": {
+      "waterMetering": "水计量",
+      "thermalEnergyMetering": "热能计量",
+      "remoteReadingSystems": "远程抄表系统"
+    },
+    "waterMetering": {
+      "smart": "智能水表",
+      "residential": "住宅用",
+      "bulk": "大口径",
+      "accessories": "配件"
+    },
+    "thermalEnergyMetering": {
+      "mechanical": "机械式",
+      "ultrasonic": "超声波",
+      "heatAllocators": "热分配器",
+      "accessories": "配件"
+    },
+    "remoteReadingSystems": {
+      "lorawan": "LoRaWan",
+      "mBusWireless": "M-BUS 无线",
+      "mBus": "M-BUS",
+      "pulseOutput": "脉冲输出"
+    },
+    "allProducts": "所有产品"
+  },
+  "company": {
+    "title": "公司简介",
+    "years": "30年历史",
+    "metersPerYear": "年产220万只水表",
+    "countries": "覆盖90个国家",
+    "facilityArea": "厂房面积12,000平方米"
+  },
+  "footer": {
+    "tagline": "拥有30年专业经验的水和能源计量解决方案领先制造商。",
+    "quickLinks": "快速链接",
+    "links": {
+      "company": "公司",
+      "products": "产品",
+      "downloads": "下载",
+      "news": "新闻",
+      "faq": "常见问题",
+      "contacts": "联系我们"
+    },
+    "legal": {
+      "privacyPolicy": "隐私政策",
+      "cookieSettings": "Cookie 设置",
+      "whistleblowing": "举报"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube"
+    },
+    "headquarters": "总部",
+    "address": "Via Brigata Re, 33050 Gonars (UD), 意大利",
+    "copyright": "© {year} B METERS。保留所有权利。"
+  },
+  "cta": {
+    "learnMore": "了解更多",
+    "contactUs": "联系我们",
+    "viewAll": "查看全部",
+    "download": "下载"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "创立于1993年",
+      "title": "精准计量",
+      "subtitle": "水和能源计量解决方案领先制造商，产品畅销全球90余个国家。",
+      "imagePlaceholder": "产品图片",
+      "statYearsLabel": "专业经验",
+      "statMetersLabel": "年产量",
+      "statCountriesLabel": "覆盖国家"
+    },
+    "products": {
+      "title": "产品系列",
+      "subtitle": "全面的计量解决方案，专为精度、可靠性和无缝集成而设计。",
+      "waterDesc": "高精度水表，适用于住宅和商业场景，涵盖智能水表到大口径流量计。",
+      "thermalDesc": "可靠的热能表——机械式和超声波式——适用于供暖和制冷应用。",
+      "remoteDesc": "LoRaWAN、M-Bus 和无线远程抄表系统，实现高效实时数据采集。"
+    },
+    "news": {
+      "title": "最新动态",
+      "subtitle": "关注产品发布、行业活动和公司最新资讯。",
+      "readMore": "阅读更多",
+      "categoryProduct": "产品",
+      "categoryEvent": "活动",
+      "categoryTech": "技术",
+      "categoryCompany": "公司",
+      "item1Title": "B METERS 推出全新智能水表系列",
+      "item1Summary": "新一代智能水表将超声波精度与集成物联网连接相结合，助力更智慧的水资源管理。",
+      "item2Title": "B METERS 亮相阿姆斯特丹 Aquatech 2024",
+      "item2Summary": "欢迎莅临1号展馆B42展台，现场体验完整计量解决方案及实物演示。",
+      "item3Title": "远程抄表系统 LoRaWAN 集成升级",
+      "item3Summary": "最新固件更新带来增强型 LoRaWAN Class C 支持，大幅降低大规模部署的数据延迟。",
+      "item4Title": "B METERS 发布2024年可持续发展报告",
+      "item4Summary": "年度可持续发展报告重点展示我们在生产和物流各环节减少环境影响的承诺与成果。"
+    }
+  }
+}

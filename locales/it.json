@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "products": "Prodotti",
+    "meterReadingService": "Servizio di Lettura",
+    "company": "Azienda",
+    "news": "News",
+    "contacts": "Contatti",
+    "commercialInfo": "Info Commerciali",
+    "technicalSupport": "Supporto Tecnico",
+    "downloads": "Download",
+    "softwareActivation": "Attivazione Software"
+  },
+  "products": {
+    "categories": {
+      "waterMetering": "Misura dell'Acqua",
+      "thermalEnergyMetering": "Misura dell'Energia Termica",
+      "remoteReadingSystems": "Sistemi di Telelettura"
+    },
+    "waterMetering": {
+      "smart": "Contatori SMART",
+      "residential": "Residenziale",
+      "bulk": "Volumetrico",
+      "accessories": "Accessori"
+    },
+    "thermalEnergyMetering": {
+      "mechanical": "Meccanico",
+      "ultrasonic": "Ultrasonico",
+      "heatAllocators": "Ripartitori di calore",
+      "accessories": "Accessori"
+    },
+    "remoteReadingSystems": {
+      "lorawan": "LoRaWan",
+      "mBusWireless": "M-BUS Wireless",
+      "mBus": "M-BUS",
+      "pulseOutput": "Uscita a impulsi"
+    },
+    "allProducts": "Tutti i prodotti"
+  },
+  "company": {
+    "title": "Azienda",
+    "years": "30 anni",
+    "metersPerYear": "2,2 milioni di contatori all'anno",
+    "countries": "90 Paesi",
+    "facilityArea": "12.000 m²"
+  },
+  "footer": {
+    "tagline": "Produttore leader di soluzioni per la misurazione di acqua ed energia con 30 anni di esperienza.",
+    "quickLinks": "Link Rapidi",
+    "links": {
+      "company": "Azienda",
+      "products": "Prodotti",
+      "downloads": "Download",
+      "news": "News",
+      "faq": "FAQ",
+      "contacts": "Contatti"
+    },
+    "legal": {
+      "privacyPolicy": "Privacy Policy",
+      "cookieSettings": "Impostazioni Cookie",
+      "whistleblowing": "Whistleblowing"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube"
+    },
+    "headquarters": "Sede Centrale",
+    "address": "Via Brigata Re, 33050 Gonars (UD), Italia",
+    "copyright": "© {year} B METERS. Tutti i diritti riservati."
+  },
+  "cta": {
+    "learnMore": "Scopri di più",
+    "contactUs": "Contattaci",
+    "viewAll": "Vedi tutti",
+    "download": "Scarica"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Dal 1993",
+      "title": "Precisione nella Misurazione",
+      "subtitle": "Produttore leader di soluzioni per la misurazione di acqua ed energia, scelto in oltre 90 paesi nel mondo.",
+      "imagePlaceholder": "Immagine prodotto",
+      "statYearsLabel": "di esperienza",
+      "statMetersLabel": "prodotti ogni anno",
+      "statCountriesLabel": "paesi serviti"
+    },
+    "products": {
+      "title": "La Nostra Gamma di Prodotti",
+      "subtitle": "Soluzioni di misurazione complete, progettate per precisione, affidabilità e integrazione semplice.",
+      "waterDesc": "Contatori d'acqua ad alta precisione per uso residenziale e commerciale, dai contatori SMART a quelli volumetrici.",
+      "thermalDesc": "Contatori di energia termica affidabili — meccanici e ultrasonici — per impianti di riscaldamento e raffrescamento.",
+      "remoteDesc": "Sistemi di telelettura LoRaWAN, M-Bus e wireless per la raccolta dati in tempo reale su larga scala."
+    },
+    "news": {
+      "title": "Ultime Notizie",
+      "subtitle": "Rimani aggiornato su lanci di prodotti, eventi e aggiornamenti aziendali.",
+      "readMore": "Leggi di più",
+      "categoryProduct": "Prodotto",
+      "categoryEvent": "Evento",
+      "categoryTech": "Tecnologia",
+      "categoryCompany": "Azienda",
+      "item1Title": "B METERS lancia la nuova gamma di contatori SMART",
+      "item1Summary": "I nostri contatori SMART di nuova generazione combinano la precisione ultrasonica con la connettività IoT integrata.",
+      "item2Title": "B METERS ad Aquatech Amsterdam 2024",
+      "item2Summary": "Visitate il nostro stand B42 nella Hall 1 per scoprire la gamma completa di soluzioni di misurazione con dimostrazioni dal vivo.",
+      "item3Title": "Aggiornamento integrazione LoRaWAN per sistemi di telelettura",
+      "item3Summary": "L'ultimo aggiornamento firmware introduce il supporto avanzato LoRaWAN Class C, riducendo la latenza per grandi installazioni.",
+      "item4Title": "B METERS pubblica il Rapporto di Sostenibilità 2024",
+      "item4Summary": "Il nostro rapporto annuale evidenzia l'impegno per ridurre l'impatto ambientale nella produzione e nella logistica."
+    }
+  }
+}
