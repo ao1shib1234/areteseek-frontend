@@ -53,30 +53,30 @@
               </div>
             </div>
             <div class="flex flex-col gap-2.5" style="font-size: 13px; color: #585858; line-height: 1.65;">
-              <p>Via Friuli, 3<br />33050 Gonars (UD) - ITALY</p>
+              <p v-html="hqAddress.replace(/\n/g,'<br />')" />
               <div>
-                <a href="tel:+390432747915" class="flex items-center gap-1.5 no-underline hover:text-[#20427D] transition-colors" style="color: #585858;">
+                <a :href="`tel:${hqPhone.replace(/[\s-]/g,'')}`" class="flex items-center gap-1.5 no-underline hover:text-[#20427D] transition-colors" style="color: #585858;">
                   <svg class="shrink-0" style="width: 13px; height: 13px;" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                   </svg>
-                  +39 0432 747915
+                  {{ hqPhone }}
                 </a>
-                <span class="block mt-1" style="color: #585858;">Fax: +39 0432 747957</span>
+                <span v-if="hqFax" class="block mt-1" style="color: #585858;">Fax: {{ hqFax }}</span>
               </div>
               <div class="pt-2.5" style="border-top: 1px solid #e5e7eb;">
                 <p class="font-semibold mb-1" style="color: #333;">Commercial Info:</p>
-                <a href="mailto:info@bmeters.com" class="no-underline hover:opacity-80" style="color: #0C4DA2;">
-                  info@bmeters.com
+                <a :href="`mailto:${hqCommercialEmail}`" class="no-underline hover:opacity-80" style="color: #0C4DA2;">
+                  {{ hqCommercialEmail }}
                 </a>
               </div>
               <div>
                 <p class="font-semibold mb-1" style="color: #333;">Technical Assistance:</p>
-                <a href="https://ticket.bmeters.com/hc/en-us" target="_blank" rel="noopener" class="no-underline hover:opacity-80" style="color: #0C4DA2;">
-                  ticket.bmeters.com
+                <a :href="hqTechnicalSupportUrl" target="_blank" rel="noopener" class="no-underline hover:opacity-80" style="color: #0C4DA2;">
+                  {{ hqTechnicalSupportUrl.replace('https://','') }}
                 </a>
               </div>
-              <div>
-                <p style="color: #585858;">P.IVA IT01932990308</p>
+              <div v-if="hqVatNumber">
+                <p style="color: #585858;">{{ hqVatNumber }}</p>
               </div>
             </div>
           </div>
@@ -137,54 +137,37 @@ definePageMeta({ layout: 'default' })
 
 useHead({ title: 'Contacts — B METERS' })
 
-const branches = [
-  {
-    country: 'Spain',
-    address: '',
-    phone: '',
-    fax: '',
-    email: 'spain@bmeters.com',
-    website: '',
-  },
-  {
-    country: 'Romania',
-    address: '',
-    phone: '+40 232 212 620',
-    fax: '+40 232 212 621',
-    email: 'romania@bmeters.com',
-    website: '',
-  },
-  {
-    country: 'Hungary',
-    address: '',
-    phone: '+36 1 555 0100',
-    fax: '+36 1 555 0101',
-    email: 'hungary@bmeters.com',
-    website: 'https://www.bmeters.hu',
-  },
-  {
-    country: 'Poland',
-    address: '',
-    phone: '+48 22 123 4567',
-    fax: '',
-    email: 'poland@bmeters.com',
-    website: 'https://www.bmeters.pl',
-  },
-  {
-    country: 'Sweden',
-    address: '',
-    phone: '+46 8 123 4567',
-    fax: '',
-    email: 'sweden@bmeters.com',
-    website: '',
-  },
-  {
-    country: 'United Kingdom',
-    address: '',
-    phone: '',
-    fax: '',
-    email: 'uk-sales@bmeters.com',
-    website: '',
-  },
-]
+// ── Fallback data ─────────────────────────────────────────────────────────────
+const FB = {
+  hqAddress: 'Via Friuli, 3\n33050 Gonars (UD) - Italy',
+  hqPhone: '+39 0432 747915',
+  hqFax: '',
+  hqCommercialEmail: 'info@bmeters.com',
+  hqTechnicalSupportUrl: 'https://ticket.bmeters.com/hc/en-us',
+  hqVatNumber: 'P.IVA: IT02547520304',
+  branches: [
+    { country: 'Spain', address: '', phone: '', fax: '', email: 'spain@bmeters.com', website: '' },
+    { country: 'Romania', address: '', phone: '+40 232 212 620', fax: '+40 232 212 621', email: 'romania@bmeters.com', website: '' },
+    { country: 'Hungary', address: '', phone: '+36 1 555 0100', fax: '+36 1 555 0101', email: 'hungary@bmeters.com', website: 'https://www.bmeters.hu' },
+    { country: 'Poland', address: '', phone: '+48 22 123 4567', fax: '', email: 'poland@bmeters.com', website: 'https://www.bmeters.pl' },
+    { country: 'Sweden', address: '', phone: '+46 8 123 4567', fax: '', email: 'sweden@bmeters.com', website: '' },
+    { country: 'United Kingdom', address: '', phone: '', fax: '', email: 'uk-sales@bmeters.com', website: '' },
+  ],
+}
+
+// ── Fetch from Strapi ─────────────────────────────────────────────────────────
+const { fetchSiteSettings } = useApi()
+const { data: siteData } = await useAsyncData('site-settings', fetchSiteSettings)
+const s = computed(() => {
+  const raw = siteData.value?.data ?? {}
+  return (raw.attributes ?? raw) as Record<string, unknown>
+})
+
+const hqAddress            = computed(() => (s.value?.hqAddress as string) || FB.hqAddress)
+const hqPhone              = computed(() => (s.value?.hqPhone as string) || FB.hqPhone)
+const hqFax                = computed(() => (s.value?.hqFax as string) || FB.hqFax)
+const hqCommercialEmail    = computed(() => (s.value?.hqCommercialEmail as string) || FB.hqCommercialEmail)
+const hqTechnicalSupportUrl = computed(() => (s.value?.hqTechnicalSupportUrl as string) || FB.hqTechnicalSupportUrl)
+const hqVatNumber          = computed(() => (s.value?.hqVatNumber as string) || FB.hqVatNumber)
+const branches             = computed(() => (s.value?.branches as typeof FB.branches) || FB.branches)
 </script>

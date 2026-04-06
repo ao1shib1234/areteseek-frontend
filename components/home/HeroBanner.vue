@@ -4,7 +4,7 @@
     <!-- Video background (Vimeo) with dark overlay -->
     <div class="absolute inset-0 overflow-hidden" style="background: #111;">
       <iframe
-        src="https://player.vimeo.com/video/673640809?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1&autopause=0"
+        :src="heroVideoSrc"
         style="position: absolute; top: 50%; left: 50%; width: 177.78vh; height: 100vh; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%);"
         frameborder="0"
         allow="autoplay; fullscreen"
@@ -52,6 +52,7 @@
 const FALLBACK_HERO_IMAGE = 'https://www.bmeters.com/wp-content/uploads/2021/05/B-METERS_LS_8617-scaled-aspect-ratio-860-530.jpg'
 const FALLBACK_BUTTON_TEXT = 'Find out more'
 const FALLBACK_DESCRIPTION = 'B METERS srl operates as an independent, specialised company on a national and international level in the water and heat metering sector, bringing a broad offer to the market with complete and integrated solutions.'
+const FALLBACK_VIDEO_URL = 'https://player.vimeo.com/video/673640809?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1&autopause=0'
 
 const { fetchHomepage } = useApi()
 const { data: homepageData } = await useAsyncData('homepage', fetchHomepage)
@@ -66,6 +67,10 @@ const heroImageUrl = computed(() => {
   const media = (imgField?.data as Record<string, unknown>)?.attributes ?? imgField
   return getStrapiImageUrl(media as Record<string, unknown>) ?? FALLBACK_HERO_IMAGE
 })
+
+const heroVideoSrc = computed(() =>
+  (entry.value?.heroVideoUrl as string) || FALLBACK_VIDEO_URL
+)
 
 const heroButtonText = computed(() =>
   (entry.value?.heroButtonText as string) || FALLBACK_BUTTON_TEXT

@@ -17,16 +17,12 @@
             />
           </a>
           <div class="flex flex-col gap-2" style="font-size: 13px;">
-            <p style="color: rgba(255,255,255,0.85); line-height: 1.6;">
-              B METERS S.R.L.<br />
-              Via Friuli, 3<br />
-              33050 Gonars (UD) - Italy
-            </p>
-            <a href="tel:+390432747915" class="no-underline hover:text-white transition-colors" style="color: rgba(255,255,255,0.85);">
-              Tel: +39 0432 747915
+            <p style="color: rgba(255,255,255,0.85); line-height: 1.6;" v-html="footerAddress" />
+            <a :href="`tel:${hqPhone.replace(/[\s-]/g,'')}`" class="no-underline hover:text-white transition-colors" style="color: rgba(255,255,255,0.85);">
+              Tel: {{ hqPhone }}
             </a>
-            <a href="mailto:info@bmeters.com" class="no-underline hover:text-white transition-colors" style="color: rgba(255,255,255,0.85);">
-              info@bmeters.com
+            <a :href="`mailto:${hqEmail}`" class="no-underline hover:text-white transition-colors" style="color: rgba(255,255,255,0.85);">
+              {{ hqEmail }}
             </a>
           </div>
           <!-- Social icons -->
@@ -34,7 +30,7 @@
             <a
               v-for="social in socials"
               :key="social.key"
-              :href="social.href"
+              :href="social.href || '#'"
               :aria-label="social.label"
               target="_blank"
               rel="noopener noreferrer"
@@ -114,8 +110,8 @@
             {{ $t('footer.headquarters') }}
           </h3>
           <div class="flex flex-col gap-1.5" style="font-size: 13px; color: rgba(255,255,255,0.8);">
-            <span>Commercial Info: <a href="mailto:info@bmeters.com" class="no-underline hover:text-white" style="color: rgba(255,255,255,0.8);">info@bmeters.com</a></span>
-            <span>Technical Support: <a href="https://ticket.bmeters.com/hc/en-us" target="_blank" rel="noopener" class="no-underline hover:text-white" style="color: rgba(255,255,255,0.8);">ticket.bmeters.com</a></span>
+            <span>Commercial Info: <a :href="`mailto:${footerCommercialEmail}`" class="no-underline hover:text-white" style="color: rgba(255,255,255,0.8);">{{ footerCommercialEmail }}</a></span>
+            <span>Technical Support: <a :href="footerSupportUrl" target="_blank" rel="noopener" class="no-underline hover:text-white" style="color: rgba(255,255,255,0.8);">{{ footerSupportUrl.replace('https://','') }}</a></span>
           </div>
         </div>
       </div>
@@ -144,11 +140,42 @@
 <script setup lang="ts">
 const currentYear = new Date().getFullYear()
 
-const socials = [
-  { key: 'linkedin', label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/company/b-meters' },
-  { key: 'youtube', label: 'YouTube', icon: 'youtube', href: 'https://www.youtube.com/bmeters' },
-  { key: 'facebook', label: 'Facebook', icon: 'facebook', href: 'https://www.facebook.com/bmeters' },
-]
+// ── Fallback 数据 ─────────────────────────────────────────────────────────────
+const FB = {
+  companyName: 'B METERS S.R.L.',
+  hqAddress: 'Via Friuli, 3\n33050 Gonars (UD) - Italy',
+  hqPhone: '+39 0432 747915',
+  hqEmail: 'info@bmeters.com',
+  linkedinUrl: 'https://www.linkedin.com/company/b-meters',
+  youtubeUrl: 'https://www.youtube.com/bmeters',
+  facebookUrl: 'https://www.facebook.com/bmeters',
+  footerCommercialEmail: 'info@bmeters.com',
+  footerSupportUrl: 'https://ticket.bmeters.com/hc/en-us',
+}
+
+// ── 从 Strapi 获取 ─────────────────────────────────────────────────────────────
+const { fetchSiteSettings } = useApi()
+const { data: siteData } = await useAsyncData('site-settings', fetchSiteSettings)
+const s = computed(() => {
+  const raw = siteData.value?.data ?? {}
+  return (raw.attributes ?? raw) as Record<string, unknown>
+})
+
+const hqPhone             = computed(() => (s.value?.hqPhone as string) || FB.hqPhone)
+const hqEmail             = computed(() => (s.value?.hqCommercialEmail as string) || FB.hqEmail)
+const footerCommercialEmail = computed(() => (s.value?.footerCommercialEmail as string) || FB.footerCommercialEmail)
+const footerSupportUrl    = computed(() => (s.value?.footerSupportUrl as string) || FB.footerSupportUrl)
+const footerAddress       = computed(() => {
+  const addr = (s.value?.hqAddress as string) || FB.hqAddress
+  const name = (s.value?.companyName as string) || FB.companyName
+  return `${name}<br />${addr.replace(/\n/g, '<br />')}`
+})
+
+const socials = computed(() => [
+  { key: 'linkedin', label: 'LinkedIn', icon: 'linkedin', href: (s.value?.linkedinUrl as string) || FB.linkedinUrl },
+  { key: 'youtube',  label: 'YouTube',  icon: 'youtube',  href: (s.value?.youtubeUrl as string)  || FB.youtubeUrl  },
+  { key: 'facebook', label: 'Facebook', icon: 'facebook', href: (s.value?.facebookUrl as string) || FB.facebookUrl },
+])
 
 const productLinks = [
   { label: 'Water Metering', href: '/product-category/water-metering' },

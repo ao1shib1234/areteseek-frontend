@@ -93,5 +93,18 @@ export const useApi = () => {
     }
   }
 
-  return { fetchHomepage, fetchProductCategories, fetchNews, fetchProducts, fetchProductsByCategory }
+  // ── Site Settings (single type) ───────────────────────────────────────────
+  const fetchSiteSettings = async (): Promise<StrapiResponse<Record<string, unknown>>> => {
+    try {
+      const data = await $fetch<StrapiResponse<Record<string, unknown>>>(
+        `${STRAPI_URL}/api/site-setting`
+      )
+      return data
+    } catch (err) {
+      console.warn('[useApi] fetchSiteSettings failed, using fallback:', err)
+      return { data: {} }
+    }
+  }
+
+  return { fetchHomepage, fetchProductCategories, fetchNews, fetchProducts, fetchProductsByCategory, fetchSiteSettings }
 }
