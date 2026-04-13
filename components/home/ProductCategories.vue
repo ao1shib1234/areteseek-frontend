@@ -26,6 +26,7 @@
                 :alt="cat.title"
                 class="w-full h-full hover:scale-105 transition-transform duration-300"
                 style="object-fit: contain;"
+                @error="(e) => { const el = e.target as HTMLImageElement; const fb = FALLBACK_IMAGE[cat.slug]; if (fb && el.src !== window.location.origin + fb) el.src = fb }"
               />
             </div>
           </NuxtLink>
