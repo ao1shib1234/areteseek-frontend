@@ -95,7 +95,7 @@ const FALLBACK_CATEGORIES: Category[] = [
   {
     slug: 'water-metering',
     title: 'Water Metering',
-    imageUrl: 'https://www.bmeters.com/wp-content/uploads/2023/07/HYDRODIGIT-M1-sopra2.png',
+    imageUrl: '/images/categories/water-metering.png',
     accentColor: '#0C4DA2',
     subcategories: [
       { label: 'SMART Meters' },
@@ -107,7 +107,7 @@ const FALLBACK_CATEGORIES: Category[] = [
   {
     slug: 'thermal-energy-metering',
     title: 'Thermal Energy Metering',
-    imageUrl: 'https://www.bmeters.com/wp-content/uploads/2022/07/hcW4-aspect-ratio-450-450-1.png',
+    imageUrl: '/images/categories/thermal-energy-metering.png',
     accentColor: '#E87722',
     subcategories: [
       { label: 'Mechanical Meters' },
@@ -119,7 +119,7 @@ const FALLBACK_CATEGORIES: Category[] = [
   {
     slug: 'remote-reading-systems',
     title: 'Remote Reading Systems',
-    imageUrl: 'https://www.bmeters.com/wp-content/uploads/2021/07/rrs-03-1-aspect-ratio-450-450.jpg',
+    imageUrl: '/images/categories/remote-reading-systems.jpg',
     accentColor: '#585858',
     subcategories: [
       { label: 'LoRaWan' },
