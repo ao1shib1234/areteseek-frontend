@@ -133,6 +133,12 @@ const FALLBACK_CATEGORIES: Category[] = [
 const { fetchProductCategories } = useApi()
 const { data: categoriesData } = await useAsyncData('product-categories', fetchProductCategories)
 
+const FALLBACK_IMAGE: Record<string, string> = {
+  'water-metering': '/images/categories/water-metering.png',
+  'thermal-energy-metering': '/images/categories/thermal-energy-metering.png',
+  'remote-reading-systems': '/images/categories/remote-reading-systems.jpg',
+}
+
 const displayCategories = computed<Category[]>(() => {
   const items = categoriesData.value?.data ?? []
   if (!items.length) return FALLBACK_CATEGORIES
@@ -140,9 +146,10 @@ const displayCategories = computed<Category[]>(() => {
     const attrs = ((item as Record<string, unknown>).attributes ?? item) as Record<string, unknown>
     const imgRelation = attrs.image as Record<string, unknown> | undefined
     const imgData = (imgRelation?.data as Record<string, unknown>)?.attributes ?? imgRelation
-    const imageUrl = getStrapiImageUrl(imgData as Record<string, unknown>) ?? ''
+    const slug = (attrs.slug as string) ?? ''
+    const imageUrl = getStrapiImageUrl(imgData as Record<string, unknown>) || FALLBACK_IMAGE[slug] || ''
     return {
-      slug: (attrs.slug as string) ?? '',
+      slug,
       title: (attrs.title as string) ?? '',
       imageUrl,
       accentColor: (attrs.accentColor as string) ?? '#0C4DA2',
