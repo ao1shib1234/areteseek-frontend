@@ -186,9 +186,9 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const FB = {
-  email: 'info@bmeters.com',
-  phone: '+39 0432 747915',
-  address: 'Via Friuli, 3\n33050 Gonars (UD) - Italy',
+  email: 'Easyyan1988@gmail.com',
+  phone: '15888021639',
+  address: '',
 }
 
 const { fetchSiteSettings } = useApi()
