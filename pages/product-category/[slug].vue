@@ -21,108 +21,116 @@
       </div>
     </section>
 
-    <!-- Products grid -->
+    <!-- Products grid + sidebar -->
     <section class="bg-white py-12">
       <div class="max-w-[1400px] mx-auto px-4">
-        <!-- Category subcategory filter tabs (visual only) -->
-        <div class="flex flex-wrap gap-2 mb-8">
-          <button
-            v-for="sub in category.subcategories"
-            :key="sub"
-            class="px-4 py-2 rounded font-semibold transition-colors text-sm border"
-            :class="selectedSub === sub
-              ? 'text-white border-transparent'
-              : 'text-[#0C4DA2] border-[#0C4DA2] bg-white hover:bg-[#f0f5ff]'"
-            :style="selectedSub === sub ? `background: #0C4DA2;` : ''"
-            @click="selectedSub = selectedSub === sub ? '' : sub"
-          >
-            {{ sub }}
-          </button>
-        </div>
-
-        <!-- Product cards grid - 3 columns -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0" style="border: 1px solid #e5e7eb;">
-          <article
-            v-for="(product, idx) in filteredProducts"
-            :key="product.id"
-            class="flex flex-col hover:shadow-md transition-shadow duration-200 bg-white"
-            :style="getBorderStyle(idx)"
-          >
-            <!-- Product image -->
-            <div class="flex items-center justify-center bg-white" style="height: 200px; padding: 20px; border-bottom: 1px solid #f0f0f0;">
-              <img
-                v-if="product.imageUrl"
-                :src="product.imageUrl"
-                :alt="product.name"
-                class="w-full h-full hover:scale-105 transition-transform duration-300"
-                style="object-fit: contain; max-height: 160px;"
-              />
-              <div
-                v-else
-                class="flex items-center justify-center w-full h-full"
-                style="background: #f5f8ff;"
+        <div class="grid gap-8" style="grid-template-columns: minmax(0, 1fr) 280px;">
+          <!-- Main content: filter tabs + products grid -->
+          <div>
+            <!-- Category subcategory filter tabs (visual only) -->
+            <div class="flex flex-wrap gap-2 mb-8">
+              <button
+                v-for="sub in category.subcategories"
+                :key="sub"
+                class="px-4 py-2 rounded font-semibold transition-colors text-sm border"
+                :class="selectedSub === sub
+                  ? 'text-white border-transparent'
+                  : 'text-[#0C4DA2] border-[#0C4DA2] bg-white hover:bg-[#f0f5ff]'"
+                :style="selectedSub === sub ? `background: #0C4DA2;` : ''"
+                @click="selectedSub = selectedSub === sub ? '' : sub"
               >
-                <svg style="width: 56px; height: 56px; color: rgba(12,77,162,0.15);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
-                </svg>
-              </div>
+                {{ sub }}
+              </button>
             </div>
 
-            <!-- Product info -->
-            <div class="flex flex-col flex-1 p-5">
-              <!-- Subcategory + badge -->
-              <div class="flex items-center gap-2 mb-2">
-                <span style="font-size: 10px; font-weight: 700; color: #1C96C6; text-transform: uppercase; letter-spacing: 0.08em;">
-                  {{ product.type }}
-                </span>
-                <span
-                  v-if="product.badge"
-                  class="px-1.5 py-0.5 rounded"
-                  style="font-size: 10px; font-weight: 700; color: #fff; background: #0C4DA2; letter-spacing: 0.06em;"
-                >
-                  {{ product.badge }}
-                </span>
-              </div>
-
-              <h2 class="font-bold mb-2" style="color: #20427D; font-size: 14px; line-height: 1.35;">
-                {{ product.name }}
-              </h2>
-
-              <p class="flex-1 mb-4" style="color: #585858; font-size: 13px; line-height: 1.6;">
-                {{ product.description }}
-              </p>
-
-              <!-- Key specs as tags -->
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span
-                  v-for="spec in product.specs"
-                  :key="spec"
-                  class="px-2 py-0.5 rounded"
-                  style="font-size: 11px; color: #585858; background: #f0f4fa; border: 1px solid #e2e8f0;"
-                >
-                  {{ spec }}
-                </span>
-              </div>
-
-              <!-- View product link -->
-              <NuxtLink
-                to="/contacts"
-                class="inline-flex items-center gap-1.5 font-semibold no-underline hover:opacity-80 transition-opacity"
-                style="color: #0C4DA2; font-size: 13px;"
+            <!-- Product cards grid - 2 columns (narrower main area) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0" style="border: 1px solid #e5e7eb;">
+              <article
+                v-for="(product, idx) in filteredProducts"
+                :key="product.id"
+                class="flex flex-col hover:shadow-md transition-shadow duration-200 bg-white"
+                :style="getBorderStyle(idx)"
               >
-                View product
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </NuxtLink>
-            </div>
-          </article>
-        </div>
+                <!-- Product image -->
+                <div class="flex items-center justify-center bg-white" style="height: 200px; padding: 20px; border-bottom: 1px solid #f0f0f0;">
+                  <img
+                    v-if="product.imageUrl"
+                    :src="product.imageUrl"
+                    :alt="product.name"
+                    class="w-full h-full hover:scale-105 transition-transform duration-300"
+                    style="object-fit: contain; max-height: 160px;"
+                  />
+                  <div
+                    v-else
+                    class="flex items-center justify-center w-full h-full"
+                    style="background: #f5f8ff;"
+                  >
+                    <svg style="width: 56px; height: 56px; color: rgba(12,77,162,0.15);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+                    </svg>
+                  </div>
+                </div>
 
-        <!-- Empty state -->
-        <div v-if="filteredProducts.length === 0" class="text-center py-20">
-          <p style="color: #585858; font-size: 16px;" class="mb-4">No products found in this category.</p>
-          <NuxtLink to="/products" style="color: #0C4DA2;" class="font-semibold hover:underline">View all products</NuxtLink>
+                <!-- Product info -->
+                <div class="flex flex-col flex-1 p-5">
+                  <!-- Subcategory + badge -->
+                  <div class="flex items-center gap-2 mb-2">
+                    <span style="font-size: 10px; font-weight: 700; color: #1C96C6; text-transform: uppercase; letter-spacing: 0.08em;">
+                      {{ product.type }}
+                    </span>
+                    <span
+                      v-if="product.badge"
+                      class="px-1.5 py-0.5 rounded"
+                      style="font-size: 10px; font-weight: 700; color: #fff; background: #0C4DA2; letter-spacing: 0.06em;"
+                    >
+                      {{ product.badge }}
+                    </span>
+                  </div>
+
+                  <h2 class="font-bold mb-2" style="color: #20427D; font-size: 14px; line-height: 1.35;">
+                    {{ product.name }}
+                  </h2>
+
+                  <p class="flex-1 mb-4" style="color: #585858; font-size: 13px; line-height: 1.6;">
+                    {{ product.description }}
+                  </p>
+
+                  <!-- Key specs as tags -->
+                  <div class="flex flex-wrap gap-1.5 mb-4">
+                    <span
+                      v-for="spec in product.specs"
+                      :key="spec"
+                      class="px-2 py-0.5 rounded"
+                      style="font-size: 11px; color: #585858; background: #f0f4fa; border: 1px solid #e2e8f0;"
+                    >
+                      {{ spec }}
+                    </span>
+                  </div>
+
+                  <!-- View product link -->
+                  <NuxtLink
+                    :to="`/products/${product.id}?category=${slug}`"
+                    class="inline-flex items-center gap-1.5 font-semibold no-underline hover:opacity-80 transition-opacity"
+                    style="color: #0C4DA2; font-size: 13px;"
+                  >
+                    View product
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </NuxtLink>
+                </div>
+              </article>
+            </div>
+
+            <!-- Empty state -->
+            <div v-if="filteredProducts.length === 0" class="text-center py-20">
+              <p style="color: #585858; font-size: 16px;" class="mb-4">No products found in this category.</p>
+              <NuxtLink to="/products" style="color: #0C4DA2;" class="font-semibold hover:underline">View all products</NuxtLink>
+            </div>
+          </div>
+
+          <!-- Right sidebar: contact info -->
+          <ProductContactSidebar />
         </div>
       </div>
     </section>
@@ -382,10 +390,10 @@ const filteredProducts = computed(() => {
   return category.value.products.filter(p => p.type === selectedSub.value)
 })
 
-// Border style for grid items (right border every 3rd column, bottom border for rows)
+// Border style for grid items (right border every other column, bottom border for rows)
 function getBorderStyle(idx: number): string {
   const total = filteredProducts.value.length
-  const cols = 3
+  const cols = 2
   const col = idx % cols
   const row = Math.floor(idx / cols)
   const totalRows = Math.ceil(total / cols)
