@@ -145,14 +145,11 @@ const displayCategories = computed<Category[]>(() => {
   if (!items.length) return FALLBACK_CATEGORIES
   return items.map((item) => {
     const attrs = ((item as Record<string, unknown>).attributes ?? item) as Record<string, unknown>
-    const imgRelation = attrs.image as Record<string, unknown> | undefined
-    const imgData = (imgRelation?.data as Record<string, unknown>)?.attributes ?? imgRelation
     const slug = (attrs.slug as string) ?? ''
-    const imageUrl = getStrapiImageUrl(imgData as Record<string, unknown>) || FALLBACK_IMAGE[slug] || ''
     return {
       slug,
       title: (attrs.title as string) ?? '',
-      imageUrl,
+      imageUrl: FALLBACK_IMAGE[slug] ?? '',
       accentColor: (attrs.accentColor as string) ?? '#0C4DA2',
       subcategories: (attrs.subcategories as { label: string }[]) ?? [],
     }
