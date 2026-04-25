@@ -88,18 +88,103 @@
       </div>
     </div>
 
-    <!-- Contact us CTA -->
-    <NuxtLink
-      to="/contacts"
-      class="block text-center text-white font-bold no-underline hover:opacity-90 transition-opacity"
-      style="background: #0C4DA2; padding: 12px 16px; font-size: 13px;"
-    >
-      Get in Touch →
-    </NuxtLink>
+    <!-- Enquiry form -->
+    <div style="border: 1px solid #e5e7eb; background: #fff; padding: 20px;">
+      <h3
+        class="font-bold pb-2 mb-4"
+        style="color: #20427D; font-size: 16px; border-bottom: 2px solid #20427D;"
+      >
+        Enquiry
+      </h3>
+
+      <form v-if="!submitted" class="flex flex-col gap-3" @submit.prevent="onSubmit">
+        <div class="flex flex-col gap-1">
+          <label for="enq-name" style="font-size: 12px; color: #444; font-weight: 600;">Name:</label>
+          <input
+            id="enq-name"
+            v-model="form.name"
+            type="text"
+            required
+            :disabled="loading"
+            style="width: 100%; padding: 6px 8px; border: 1px solid #c0c0c0; font-size: 13px; outline: none;"
+            @focus="onFocus"
+            @blur="onBlur"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="enq-email" style="font-size: 12px; color: #444; font-weight: 600;">Email:</label>
+          <input
+            id="enq-email"
+            v-model="form.email"
+            type="email"
+            required
+            :disabled="loading"
+            style="width: 100%; padding: 6px 8px; border: 1px solid #c0c0c0; font-size: 13px; outline: none;"
+            @focus="onFocus"
+            @blur="onBlur"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="enq-product" style="font-size: 12px; color: #444; font-weight: 600;">Product:</label>
+          <input
+            id="enq-product"
+            v-model="form.product"
+            type="text"
+            :disabled="loading"
+            style="width: 100%; padding: 6px 8px; border: 1px solid #c0c0c0; font-size: 13px; outline: none;"
+            @focus="onFocus"
+            @blur="onBlur"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="enq-comments" style="font-size: 12px; color: #444; font-weight: 600;">Comments:</label>
+          <textarea
+            id="enq-comments"
+            v-model="form.comments"
+            rows="4"
+            required
+            :disabled="loading"
+            style="width: 100%; padding: 6px 8px; border: 1px solid #c0c0c0; font-size: 13px; outline: none; resize: vertical; font-family: inherit;"
+            @focus="onFocus"
+            @blur="onBlur"
+          />
+        </div>
+
+        <p v-if="error" style="color: #d32f2f; font-size: 12px;">{{ error }}</p>
+
+        <button
+          type="submit"
+          :disabled="loading"
+          class="self-end font-bold no-underline hover:opacity-90 transition-opacity"
+          style="background: #20427D; color: #fff; padding: 8px 20px; font-size: 13px; border: none; cursor: pointer;"
+          :style="loading ? 'opacity: 0.6; cursor: not-allowed;' : ''"
+        >
+          {{ loading ? 'Sending...' : 'Submit' }}
+        </button>
+      </form>
+
+      <div v-else style="text-align: center; padding: 20px 0;">
+        <svg style="width: 40px; height: 40px; color: #2e7d32; margin: 0 auto 12px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <p style="color: #2e7d32; font-size: 14px; font-weight: 600;">Thank you!</p>
+        <p style="color: #585858; font-size: 12px; margin-top: 6px;">Your enquiry has been sent. We'll get back to you shortly.</p>
+      </div>
+    </div>
   </aside>
 </template>
 
 <script setup lang="ts">
+interface Props {
+  defaultProduct?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  defaultProduct: '',
+})
+
 const FB = {
   email: 'info@bmeters.com',
   phone: '+39 0432 747915',
@@ -117,4 +202,56 @@ const s = computed(() => {
 const email = computed(() => (s.value?.hqCommercialEmail as string) || FB.email)
 const phone = computed(() => (s.value?.hqPhone as string) || FB.phone)
 const address = computed(() => (s.value?.hqAddress as string) || FB.address)
+
+const form = reactive({
+  name: '',
+  email: '',
+  product: props.defaultProduct,
+  comments: '',
+})
+
+watch(() => props.defaultProduct, (val) => {
+  if (val && !form.product) form.product = val
+})
+
+const loading = ref(false)
+const submitted = ref(false)
+const error = ref('')
+
+const config = useRuntimeConfig()
+const strapiUrl = config.public.strapiUrl as string
+
+function onFocus(e: FocusEvent) {
+  const el = e.target as HTMLElement
+  el.style.borderColor = '#0C4DA2'
+}
+function onBlur(e: FocusEvent) {
+  const el = e.target as HTMLElement
+  el.style.borderColor = '#c0c0c0'
+}
+
+async function onSubmit() {
+  error.value = ''
+  loading.value = true
+  try {
+    await $fetch(`${strapiUrl}/api/enquiries`, {
+      method: 'POST',
+      body: {
+        data: {
+          name: form.name,
+          email: form.email,
+          product: form.product,
+          comments: form.comments,
+          sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+        },
+      },
+    })
+    submitted.value = true
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : 'Failed to submit. Please try again.'
+    error.value = msg
+  } finally {
+    loading.value = false
+  }
+}
 </script>

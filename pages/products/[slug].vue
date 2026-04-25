@@ -114,7 +114,7 @@
           </div>
 
           <!-- Right sidebar: contact -->
-          <ProductContactSidebar />
+          <ProductContactSidebar :default-product="product.name" />
         </div>
       </div>
     </section>
